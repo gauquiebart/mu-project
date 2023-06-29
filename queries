@@ -1,0 +1,94 @@
+; insert a book
+
+PREFIX schema: <http://schema.org/>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+
+INSERT
+{
+     GRAPH <http://mu.semte.ch/application>
+     {
+          <http://mu.semte.ch/services/github/madnificent/book-service/books/3642ea79-c2a5-46fc-beed-2880a42c0b86> a schema:Book ;
+          schema:name "Great expectations";
+          schema:isbn "1214";
+           mu:uuid "3642ea79-c2a5-46fc-beed-2880a42c0b86"
+     }
+
+}
+
+; insert an author
+; Note: we use foaf:Person as a type, and foaf:name, instead of schema:name
+
+PREFIX schema: <http://schema.org/>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+INSERT
+{
+     GRAPH <http://mu.semte.ch/application>
+     {
+         <http://mu.semte.ch/services/github/madnificent/book-service/authors/b2e976c7-67e6-43bd-ada9-3bafcf47cfd6> a foaf:Person ;
+          foaf:name "Charles Dickens";
+           mu:uuid "b2e976c7-67e6-43bd-ada9-3bafcf47cfd6"
+     }
+
+}
+
+;link great expectations to charles dickens
+PREFIX schema: <http://schema.org/>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+
+INSERT
+{
+     GRAPH <http://mu.semte.ch/application>
+     {
+         <http://mu.semte.ch/services/github/madnificent/book-service/books/3642ea79-c2a5-46fc-beed-2880a42c0b86> schema:author <http://mu.semte.ch/services/github/madnificent/book-service/authors/b2e976c7-67e6-43bd-ada9-3bafcf47cfd6>
+     }
+
+}
+
+; add another novel from dickens
+
+PREFIX schema: <http://schema.org/>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+
+INSERT
+{
+     GRAPH <http://mu.semte.ch/application>
+     {
+          PREFIX schema: <http://schema.org/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+
+          INSERT
+          {
+               GRAPH <http://mu.semte.ch/application>
+               {
+                    <http://mu.semte.ch/services/github/madnificent/book-service/books/62656230-a12c-4660-ba2b-3f62c796c04a> a schema:Book ;
+                    schema:name "Bleak House";
+                    schema:isbn "67654";
+                     mu:uuid "62656230-a12c-4660-ba2b-3f62c796c04a";
+                     schema:author <http://mu.semte.ch/services/github/madnificent/book-service/authors/b2e976c7-67e6-43bd-ada9-3bafcf47cfd6>
+               }
+
+          }
+ a schema:Book ;
+          schema:name "Bleak House";
+          schema:isbn "67654";
+           mu:uuid "62656230-a12c-4660-ba2b-3f62c796c04a";
+           schema:author <http://mu.semte.ch/services/github/madnificent/book-service/authors/b2e976c7-67e6-43bd-ada9-3bafcf47cfd6>
+     }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

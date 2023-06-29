@@ -13,6 +13,7 @@ services:
     image: semtech/mu-dispatcher:2.0.0
     links:
       - resource:resource
+      - books:books
     volumes:
       - ./config/dispatcher:/config
   database:
@@ -25,8 +26,14 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+  books:
+    image: madnificent/books-service:2.0.0
+    links:
+      - database:database
+    ports:
+      - "6379:80"
   resource:
-    image: semtech/mu-cl-resources:1.20.0
+    image: semtech/mu-cl-resources:feature-arm64-builds
     links:
       - database:database
     volumes:
